@@ -14,7 +14,7 @@ header("content-type:text/html;charset=utf-8");
 </head>
 
 <body>
-    <div>
+    <div><!-- upload_file.php -->
         <form method="post" action="upload_file.php" enctype="multipart/form-data">
             <div>
                 <h2>绿茶漫画发布平台：</h2>
@@ -33,8 +33,8 @@ header("content-type:text/html;charset=utf-8");
             <div>
             <br>
             <span>发布时间，截稿后会打包发布给各平台<br>（已过时间的当天则默认为第二天）：</span><br>
-                <label><input type="radio" checked="checked" name="releaseA" value="上午11点"></label>上午11点整截稿
-                <label><input type="radio" name="releaseA" value="下午5点"></label>下午5点整截稿
+                <label><input type="radio" checked="checked" name="releaseT" value="上午11点"></label>上午11点整截稿
+                <label><input type="radio" name="releaseT" value="下午5点"></label>下午5点整截稿
                 <!-- <label><input type="submit" name="Submit" value="提交"></label> -->
             </div>
             <div>
@@ -47,19 +47,20 @@ header("content-type:text/html;charset=utf-8");
                 <input type="text" name="selfKey"><br>
             </div>
             <div>
-            <b>文件务必进行压缩，格式为zip。否则会上传失败！</b><br>
+            <b>文件务必进行压缩，格式为zip。否则会上传失败！文件大小若38MB请直接发给奶嘴</b><br>
                 <label for="file">文件名：</label>
                 <input type="file" name="file" id="file"><p>选择文件↑后，点击提交文件↓：</p>
                 <input type="submit" name="submit" value="提交文件">
-                <p>PS：传输速度大概500kb/s,5MB文件大概10s。耐心等一下，成功会跳转的！</p>
+                <p>PS：传输速度大概300kb/s,10MB文件大概40s。耐心等一下，成功会跳转的！</p>
             </div>
         </form> 
         <?php
         if ($_POST) {
             $value = $_POST['checkbox'];
             var_dump($value);
-            $values = $_POST['releaseA'];
+            $values = $_POST['releaseT'];
             var_dump($values);
+            echo $_POST['selfKey'];
             echo '你的选择:' . implode(',', $value);
         }
         ?>
