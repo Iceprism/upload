@@ -1,21 +1,18 @@
 <?php
+header("content-type:text/html;charset=utf-8");
 /* echo $_POST;
 var_dump($_POST);
 echo $_FILES["file"]["size"]; */
-
+echo $_FILES["file"]["type"];
 // 允许上传的图片后缀
-$allowedExts = array("gif", "jpeg", "jpg", "png");
+
+$allowedExts = array("zip","rar");
 $temp = explode(".", $_FILES["file"]["name"]);
 echo $_FILES["file"]["size"];
 $extension = end($temp);     // 获取文件后缀名
-if ((($_FILES["file"]["type"] == "image/gif")
-|| ($_FILES["file"]["type"] == "image/jpeg")
-|| ($_FILES["file"]["type"] == "image/jpg")
-|| ($_FILES["file"]["type"] == "image/pjpeg")
-|| ($_FILES["file"]["type"] == "image/x-png")
-|| ($_FILES["file"]["type"] == "image/x-png")
-|| ($_FILES["file"]["type"] == "image/png"))
-&& ($_FILES["file"]["size"] < 99204800)   // 小于 200 kb
+if ((($_FILES["file"]["type"] == "application/x-zip-compressed")
+|| ($_FILES["file"]["type"] == "application/x-rar-compressed"))
+&& ($_FILES["file"]["size"] < 40845888)   // 小于 38 mb
 && in_array($extension, $allowedExts))
 {
 	if ($_FILES["file"]["error"] > 0)
@@ -38,7 +35,11 @@ if ((($_FILES["file"]["type"] == "image/gif")
 		else
 		{
 			// 如果 upload 目录不存在该文件则将文件上传到 upload 目录下
-			move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"]["name"]);
+			/* $e=mb_detect_encoding($_FILES["file"]["name"], array("UTF-8","GBK","gb2312"));
+			echo $e; */
+			/* move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"]["name"]); */
+			move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . iconv("UTF-8","gb2312",$_FILES["file"]["name"]));
+			/* move_uploaded_file($_FILES["file"]["tmp_name"], "upload/测试数据.txt"); */
 			echo "文件存储在: " . "upload/" . $_FILES["file"]["name"];
 		}
 	}

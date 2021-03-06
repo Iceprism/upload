@@ -1,6 +1,5 @@
 <?php
-
-
+header("content-type:text/html;charset=utf-8");
 
 ?>
 
@@ -8,16 +7,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Document</title>
 </head>
 
 <body>
-    <div><!-- upload_file.php -->
-        <form method="post" action="" enctype="multipart/form-data">
+    <div>
+        <form method="post" action="upload_file.php" enctype="multipart/form-data">
             <div>
-                <h2>漫画计划发布平台：</h2>
+                <h2>绿茶漫画发布平台：</h2>
                 <h3>（若已抢坑发布到动漫之家了，务必取消动漫之家的√) </h3>
                 <b>1.若需要发布无修版本，请勾选哔咔，轻国目前也可以发布无修版本</b><br>
                 <b>2.不要重复发布，在同一时段内，默认替换旧的，若发布出错请联系@奶嘴</b>
@@ -61,7 +61,6 @@
             $values = $_POST['releaseA'];
             var_dump($values);
             echo '你的选择:' . implode(',', $value);
-
         }
         ?>
     </div>
